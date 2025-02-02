@@ -1,4 +1,13 @@
 services:
+  cache:
+    image: redis:7.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass 123456
+    volumes:
+      - cache:/data
+
   db:
     image: postgres:17.2-alpine
     restart: always
@@ -9,6 +18,9 @@ services:
       - '5432:5432'
     volumes:
       - db:/var/lib/postgresql/data
+
 volumes:
+  cache:
+    driver: local
   db:
     driver: local
