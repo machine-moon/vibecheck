@@ -14,6 +14,7 @@ import (
 
 func main() {
 	cfg := config.LoadConfig()
+	log.Printf("Loaded config: %+v\n", cfg)
 
 	// Connect to PostgreSQL
 	connStr := "host=" + cfg.DB.Host + " port=" + cfg.DB.Port + " user=" + cfg.DB.User + " password=" + cfg.DB.Password + " dbname=" + cfg.DB.Database + " sslmode=disable"

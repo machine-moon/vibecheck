@@ -8,6 +8,6 @@ CREATE TABLE IF NOT EXISTS tweets (
 
 -- Load CSV data into the tweets table
 COPY tweets(text, hint, answer)
-FROM '/docker-entrypoint-initdb.d/tweets.csv'
+FROM '/docker-entrypoint-initdb.d/create_tables.csv'
 DELIMITER ','
 CSV HEADER;
