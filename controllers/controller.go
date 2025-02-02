@@ -47,15 +47,15 @@ func (vc *vibecheckController) GetTweetsByPage(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Tweets retrieved successfully", "tweets": tweets})
 }
 
-// CreateTweet creates a new tweet in the database
-func (vc *vibecheckController) CreateTweet(c *gin.Context) {
-	var tweet models.CreateTweet
+// NewTweet creates a new tweet in the database
+func (vc *vibecheckController) NewTweet(c *gin.Context) {
+	var tweet models.NewTweet
 	if err := c.ShouldBindJSON(&tweet); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	err := vc.vibecheckService.CreateTweet(&tweet)
+	err := vc.vibecheckService.NewTweet(&tweet)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -128,15 +128,15 @@ func (vc *vibecheckController) GetProblemsByPage(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Problems retrieved successfully", "problems": problems})
 }
 
-// CreateProblem creates a new problem in the database
-func (vc *vibecheckController) CreateProblem(c *gin.Context) {
-	var problem models.CreateProblem
+// NewProblem creates a new problem in the database
+func (vc *vibecheckController) NewProblem(c *gin.Context) {
+	var problem models.NewProblem
 	if err := c.ShouldBindJSON(&problem); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	err := vc.vibecheckService.CreateProblem(&problem)
+	err := vc.vibecheckService.NewProblem(&problem)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -157,7 +157,7 @@ func (vc *vibecheckController) GetProblem(c *gin.Context) {
 
 // GetProblem retrieves a tweet without hint and answer
 func (vc *vibecheckController) GetRandomProblem(c *gin.Context) {
-	problem, err := vc.vibecheckService.GetProblem()
+	problem, err := vc.vibecheckService.GetRandomProblem()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

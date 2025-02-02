@@ -86,8 +86,8 @@ func (s *VibecheckService) GetTweet(id string) (*models.Tweet, error) {
 	return &tweet, nil
 }
 
-// CreateTweet creates a new tweet in the database
-func (s *VibecheckService) CreateTweet(tweet *models.CreateTweet) error {
+// NewTweet creates a new tweet in the database
+func (s *VibecheckService) NewTweet(tweet *models.NewTweet) error {
 	query := "INSERT INTO tweets (id, text, hint, answer) VALUES ($1, $2, $3, $4)"
 	_, err := s.db.Exec(query, generateNewID(), tweet.Text, tweet.Hint, tweet.Answer)
 	if err != nil {
@@ -169,8 +169,8 @@ func (s *VibecheckService) GetProblemsByPage(pageNumber int, listPerPage int) ([
 	return problems, nil
 }
 
-// CreateProblem creates a new problem in the database
-func (s *VibecheckService) CreateProblem(problem *models.CreateTweet) error {
+// NewProblem creates a new problem in the database
+func (s *VibecheckService) NewProblem(problem *models.NewProblem) error {
 	query := "INSERT INTO tweets (id, text, hint, answer) VALUES ($1, $2, $3, $4)"
 	_, err := s.db.Exec(query, generateNewID(), problem.Text, problem.Hint, problem.Answer)
 	if err != nil {
@@ -227,7 +227,7 @@ func (s *VibecheckService) GetRandomProblem() (*models.Problem, error) {
 
 // CheckSolution checks if the user's guess is correct
 func (s *VibecheckService) CheckSolution(attempt *models.AttemptSolution) (bool, error) {
-	tweet, err := s.GetTweetByID(attempt.ID)
+	tweet, err := s.GetTweet(attempt.ID)
 	if err != nil {
 		return false, err
 	}
@@ -239,7 +239,7 @@ func (s *VibecheckService) CheckSolution(attempt *models.AttemptSolution) (bool,
 
 // GetHint retrieves the hint for a specific tweet
 func (s *VibecheckService) GetHint(tweetID string) (string, error) {
-	tweet, err := s.GetTweetByID(tweetID)
+	tweet, err := s.GetTweet(tweetID)
 	if err != nil {
 		return "", err
 	}

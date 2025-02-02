@@ -7,11 +7,13 @@ type Tweet struct {
 	Answer string `json:"answer"`
 }
 
-type CreateTweet struct {
+type NewTweet struct {
 	Text   string `json:"text"`
 	Hint   string `json:"hint"`
 	Answer string `json:"answer"`
 }
+
+type NewProblem = NewTweet
 
 type Problem struct {
 	ID   string `json:"id"`
