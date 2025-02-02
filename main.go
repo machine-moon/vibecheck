@@ -18,6 +18,7 @@ func main() {
 
 	// Connect to PostgreSQL
 	connStr := "host=" + cfg.DB.Host + " port=" + cfg.DB.Port + " user=" + cfg.DB.User + " password=" + cfg.DB.Password + " dbname=" + cfg.DB.Database + " sslmode=disable"
+	log.Printf("Connecting to PostgreSQL with connection string: %s\n", connStr)
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatal(err)

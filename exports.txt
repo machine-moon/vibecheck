@@ -1,9 +1,9 @@
-export DB_HOST=localhost
+export DB_HOST=db
 export DB_PORT=5432
-export DB_USER=dbuser
-export DB_PASSWORD=dbpassword
-export DB_NAME=db
-export REDIS_HOST=localhost
+export DB_USER=postgres
+export DB_PASSWORD=postgres
+export DB_NAME=postgres
+export REDIS_HOST=cache
 export REDIS_PORT=6379
 export REDIS_PASSWORD=123456
 export REDIS_DB=0

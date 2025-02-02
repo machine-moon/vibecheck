@@ -1,0 +1,61 @@
+services:
+  db:
+    image: postgres:17.2-alpine
+    restart: always
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    environment:
+      - POSTGRES_USER=${DB_USER:-postgres}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-postgres}
+      - POSTGRES_DB=${DB_NAME:-postgres}
+    ports:
+      - '${DB_PORT:-5432}:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+      - ./db/data.csv:/docker-entrypoint-initdb.d/data.csv
+      - ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+
+  cache:
+    image: redis:7.2-alpine
+    restart: always
+    ports:
+      - '${REDIS_PORT:-6379}:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD:-123456}
+    volumes:
+      - cache:/data
+  api:
+    container_name: vibecheck
+    build:
+      context: ./
+    image: vibecheck
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+      cache:
+        condition: service_started
+    ports:
+      - '8080:${SERVICE_PORT:-9000}'
+    environment:
+      DB_HOST: ${DB_HOST:-db}
+      DB_PORT: ${DB_PORT:-5432}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-postgres}
+      DB_NAME: ${DB_NAME:-postgres}
+      REDIS_HOST: ${REDIS_HOST:-cache}
+      REDIS_PORT: ${REDIS_PORT:-6379}
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-123456}
+      REDIS_DB: ${REDIS_DB:-0}
+      LIST_PER_PAGE: ${LIST_PER_PAGE:-10}
+      SERVICE_PORT: ${SERVICE_PORT:-9000}
+    links:
+      - db
+      - cache
+volumes:
+  db:
+    driver: local
+  cache:
+    driver: local
