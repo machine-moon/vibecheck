@@ -16,7 +16,6 @@ func main() {
 	cfg := config.LoadConfig()
 	log.Printf("Loaded config: %+v\n", cfg)
 
-	// Connect to PostgreSQL
 	connStr := "host=" + cfg.DB.Host + " port=" + cfg.DB.Port + " user=" + cfg.DB.User + " password=" + cfg.DB.Password + " dbname=" + cfg.DB.Database + " sslmode=disable"
 	log.Printf("Connecting to PostgreSQL with connection string: %s\n", connStr)
 	db, err := sql.Open("postgres", connStr)
@@ -25,7 +24,6 @@ func main() {
 	}
 	defer db.Close()
 
-	// Connect to Redis
 	redisClient := redis.NewClient(&redis.Options{
 		Addr:     cfg.Redis.Host + ":" + cfg.Redis.Port,
 		Password: cfg.Redis.Password,
@@ -37,12 +35,20 @@ func main() {
 	}
 	defer redisClient.Close()
 
-	// Set up the Gin router
 	r := gin.Default()
 
-	// Set up routes
+	r.Use(func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, Authorization")
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+		c.Next()
+	})
+
 	routes.SetupRoutes(r, db, redisClient, cfg.ListPerPage)
 
-	// Start the server
 	r.Run(":" + cfg.ServicePort)
 }
