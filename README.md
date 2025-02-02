@@ -25,7 +25,7 @@ Vibecheck is a web application that allows users to create, retrieve, update, an
 
 2. Set up the environment variables:
     ```sh
-    source exports.txt
+    source secrets.yml
     ```
 
 3. Build and run the application using Docker Compose:

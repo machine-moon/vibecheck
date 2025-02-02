@@ -10,7 +10,7 @@ WORKDIR /root/
 COPY --from=builder /app/server .
 
 EXPOSE 8080
-COPY exports.txt .
-RUN source exports.txt
+COPY secrets.yml .
+RUN source secrets.yml
 CMD ["./server"]
 
