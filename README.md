@@ -1,20 +1,20 @@
 # Vibecheck
 
 ## Overview
-Vibecheck is a web application that allows users to create, retrieve, update, and delete tweets. It also provides a gameplay feature where users can solve problems based on tweets and get hints.
+Vibecheck is a web application that allows users to create, retrieve, update, and delete tweets. It also features a gameplay mode where users can solve problems based on tweets and receive hints.
 
 ## Project Structure
-- `controllers/`: Contains the controller logic for handling HTTP requests.
-- `models/`: Contains the data models used in the application.
-- `services/`: Contains the business logic and interactions with the database and Redis.
-- `config/`: Contains the configuration loading logic.
-- `routes/`: Contains the route definitions for the application.
-- `db/`: Contains the database initialization SQL script and data files.
-- `docker/`: Contains Docker Compose files for setting up the database and Redis services.
-- `Dockerfile`: Dockerfile for building the application container.
-- `Makefile`: Makefile for building and running the application.
+- `controllers/`: Handles HTTP request logic.
+- `models/`: Defines the application's data models.
+- `services/`: Contains business logic and database/Redis interactions.
+- `config/`: Manages configuration loading.
+- `routes/`: Defines application routes.
+- `db/`: Includes database initialization scripts and data files.
+- `docker/`: Contains Docker Compose files for setting up database and Redis services.
+- `Dockerfile`: Builds the application container.
+- `Makefile`: Automates building and running the application.
 - `main.go`: Entry point of the application.
-- `go.mod` and `go.sum`: Go module files for dependency management.
+- `go.mod` and `go.sum`: Manage dependencies.
 
 ## Setup Instructions
 1. Clone the repository:
@@ -33,7 +33,7 @@ Vibecheck is a web application that allows users to create, retrieve, update, an
     docker-compose up --build
     ```
 
-4. Alternatively, you can build and run the application locally:
+4. Alternatively, build and run the application locally:
     ```sh
     make run
     ```

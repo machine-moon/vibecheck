@@ -3,6 +3,7 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
+RUN rm -rf frontend/
 RUN go build -o server .
 
 FROM alpine:latest

@@ -116,7 +116,7 @@ const VibeCheck = () => {
     <div className="vibecheck">
       {error && <div className="error">{error}</div>}
       <button onClick={fetchProblem} disabled={loading || submitted}>
-        {loading ? "Loading..." : "New Problem"}
+        {loading ? "Loading..." : "Skip"}
       </button>
       <button onClick={fetchHint} disabled={!problemId || loading}>
         {loading ? "Loading..." : "Get Hint"}
