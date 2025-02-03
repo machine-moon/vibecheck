@@ -1,0 +1,37 @@
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Output of the build process
+/build
+/server
+
+# Dependency directories
+frontend/node_modules/
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Logs
+*.log
+
+# IDE specific files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Node.js dependencies
+frontend/node_modules/
+frontend/dist/
+
+# Environment variables
+# secrets.yml #keeping for demo
+.env
