@@ -44,7 +44,7 @@ func LoadConfig() Config {
 	config.Redis.Password = getEnv("REDIS_PASSWORD", "1H@t3R3dis")
 	config.Redis.DB = redisDB
 	config.ListPerPage = listPerPage
-	config.ServicePort = getEnv("SERVICE_PORT", "8080")
+	config.ServicePort = getEnv("API_INTERNAL_PORT", "9000")
 	return config
 }
 

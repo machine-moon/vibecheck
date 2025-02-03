@@ -25,11 +25,6 @@ type HintContent struct {
 	Hint string `json:"hint"`
 }
 
-type AnswerContent struct {
-	ID     string `json:"id"`
-	Answer string `json:"answer"`
-}
-
 type AttemptSolution struct {
 	ID    string `json:"id"`
 	Guess string `json:"guess"`

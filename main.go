@@ -7,6 +7,7 @@ import (
 	"vibecheck/config"
 	"vibecheck/routes"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
 	"github.com/redis/go-redis/v9"
@@ -37,16 +38,16 @@ func main() {
 
 	r := gin.Default()
 
-	r.Use(func(c *gin.Context) {
-		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
-		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-		c.Writer.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type, Accept, Authorization")
-		if c.Request.Method == "OPTIONS" {
-			c.AbortWithStatus(204)
-			return
-		}
-		c.Next()
-	})
+	corsConfig := cors.DefaultConfig()
+	corsConfig.AllowAllOrigins = true
+	corsConfig.AddAllowHeaders("Authorization")
+	corsConfig.AddAllowHeaders("Content-Type")
+	corsConfig.AddAllowHeaders("X-Requested-With")
+	corsConfig.AddAllowHeaders("Accept")
+	corsConfig.AddAllowHeaders("Origin")
+	corsConfig.AddAllowHeaders("X-CSRF-Token")
+
+	r.Use(cors.New(corsConfig))
 
 	routes.SetupRoutes(r, db, redisClient, cfg.ListPerPage)
 
