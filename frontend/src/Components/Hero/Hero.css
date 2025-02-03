@@ -1,0 +1,33 @@
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25vh;
+  background-color: #007bff;
+  /* Updated background color */
+  color: white;
+  text-align: center;
+  padding-top: 5vh;
+}
+
+.hero .content {
+  max-width: 600px;
+}
+
+.hero .center-text {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.hero .social-icons {
+  margin-top: 1rem;
+}
+
+.hero .social-icon {
+  margin: 0 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.hero .social-icon:hover {
+  transform: scale(1.2);
+}

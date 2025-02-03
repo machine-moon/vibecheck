@@ -1,0 +1,65 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "A frontend for vibecheck showcasing fullstack development.",
+  "type": "module",
+  "homepage": "https://machine-moon/vibecheck.github.io",
+  "scripts": {
+    "serve": "vite preview ",
+    "dev": "vite",
+    "build": "vite build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --check .",
+    "check": "yarn lint && yarn format && yarn test",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "format:fix": "prettier --write .",
+    "fix": "yarn lint:fix && yarn format:fix",
+    "predeploy": "yarn fix && yarn build",
+    "deploy": "yarn vite preview --host"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^5.15.20",
+    "@mui/material": "^5.15.20",
+    "react": "^18.2.0",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.23.1",
+    "typewriter-effect": "^2.21.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "gh-pages": "^6.2.0",
+    "prettier": "^2.8.0",
+    "vite": "^5.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://machine-moon/vibecheck.git"
+  },
+  "bugs": {
+    "url": "https://machine-moon/vibecheck.github.io/issues"
+  },
+  "keywords": [
+    "gin",
+    "vibecheck",
+    "fullstack",
+    "golang",
+    "react",
+    "vite",
+    "REST",
+    "API"
+  ],
+  "author": "Tarek Ibrahim <tarekibrahim3@cmail.carleton.ca>",
+  "license": "MIT"
+}
