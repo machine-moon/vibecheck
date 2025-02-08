@@ -2,7 +2,7 @@ FROM node:22.13-alpine
 WORKDIR /src
 ENV NODE_ENV=production
 COPY package*.json ./
-RUN yarn install --frozen-lockfile
+RUN npm install -g yarn && yarn install --frozen-lockfile || yarn install
 COPY --chown=node:node . ./
 USER node
 
