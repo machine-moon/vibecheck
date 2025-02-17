@@ -1,0 +1,61 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A frontend for vibecheck showcasing fullstack development.",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "lint": "next lint",
+    "deploy": "next build && next start -p 3000"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.1.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.474.0",
+    "next": "15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.0.1",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20.17.19",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.6",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://machine-moon/vibecheck.git"
+  },
+  "bugs": {
+    "url": "https://machine-moon/vibecheck.github.io/issues"
+  },
+  "keywords": [
+    "gin",
+    "vibecheck",
+    "fullstack",
+    "golang",
+    "react",
+    "vite",
+    "REST",
+    "API"
+  ],
+  "authors": [
+    "Tarek Ibrahim <tarekibrahim3@cmail.carleton.ca>",
+    "Angus Bailey <AngusBailey@cmail.carleton.ca>"
+  ],
+  "license": "MIT"
+}
